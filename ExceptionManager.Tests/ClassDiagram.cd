@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="ExceptionManager.Tests.ExceptionManager">
+    <Position X="5.25" Y="0.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAggAAAAAAAEAAQIAAAAAAAAAAAABAAgAAgAAAAAAAA=</HashCode>
+      <FileName>ExceptionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExceptionManager.Tests.StubVerifierByArgumentAndOutWords" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="3" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StubVerifierByArgumentAndOutWords.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ExceptionManager.Tests.StubSender" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="6.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAEAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StubSender.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ExceptionManager.Tests.StubValidatorByMemoryWord" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>StubValidatorByMemoryWord.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ExceptionManager.Tests.StubExceptionTypeValidatorFactory">
+    <Position X="8.75" Y="3.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAACAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>StubExceptionTypeValidatorFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ExceptionManager.Tests.ICriticalVerifier">
+    <Position X="1.75" Y="1.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ICriticalVerifier.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ExceptionManager.Tests.ISender">
+    <Position X="5.5" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ISender.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ExceptionManager.Tests.IExceptionTypeValidator">
+    <Position X="8.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>IExceptionTypeValidator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

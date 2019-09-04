@@ -1,4 +1,5 @@
 using ExceptionManager.Tests.Exceptions;
+using NSubstitute;
 using System;
 using Xunit;
 
@@ -9,13 +10,14 @@ namespace ExceptionManager.Tests
         ExceptionManager manager;
         public ExceptionManagerTests()
         {
-            manager = new ExceptionManager();
+            StubExceptionTypeValidatorFactory.SetValidator(new StubValidatorByMemoryWord());
+            manager = new ExceptionManager(new StubSender());
+            manager.ExceptionVerifyier = new StubVerifierByArgumentAndOutWords();
         }
 
         [Theory]
-        [InlineData(typeof(LowBatteryLevelException))]
         [InlineData(typeof(ArgumentNullException))]
-        [InlineData(typeof(OutOfMemoryException))]
+        [InlineData(typeof(ArgumentOutOfRangeException))]
         [InlineData(typeof(IndexOutOfRangeException))]
         public void IsCriticalException_WhenCriticalException_ReturnsTrue(Type exceptionType)
         {
@@ -26,7 +28,6 @@ namespace ExceptionManager.Tests
 
         [Theory]
         [InlineData(typeof(MediumBatteryLevelException))]
-        [InlineData(typeof(ArgumentException))]
         [InlineData(typeof(ArithmeticException))]
         [InlineData(typeof(DuplicateWaitObjectException))]
         public void IsCriticalException_WhenNotCriticalException_ReturnsFalse(Type exceptionType)
@@ -37,9 +38,9 @@ namespace ExceptionManager.Tests
         }
 
         [Theory]
-        [InlineData(typeof(String))]
-        [InlineData(typeof(OperatingSystem))]
-        [InlineData(typeof(AppContext))]
+        [InlineData(typeof(MemoryOutException))]
+        [InlineData(typeof(InsufficientMemoryException))]
+        [InlineData(typeof(OutOfMemoryException))]
         public void IsCriticalException_WhenTypeIsNotExceptionType_ThrowArgumentException(Type type)
         {
             //ExceptionManager manager = new ExceptionManager();
@@ -63,7 +64,7 @@ namespace ExceptionManager.Tests
                 typeof(ArgumentException),
                 typeof(ArgumentNullException),
                 typeof(EntryPointNotFoundException),
-                typeof(MemoryOutException),
+                typeof(IndexOutOfRangeException),
                 typeof(FieldAccessException),
                 typeof(NotImplementedException),
                 typeof(FormatException)
@@ -77,6 +78,20 @@ namespace ExceptionManager.Tests
 
             Assert.True(manager.CriticalExceptionCounter == 3);
             Assert.True(manager.NotCriticalExceptionCounter == 4);
+        }
+
+        [Fact]
+        public void NorifyServer_When2ErrorOnSending_Returns2()
+        {
+            var mockSender = Substitute.For<ISender>();
+            mockSender.When(x => x.NotifyServer(Arg.Any<Exception>()).ReturnsForAnyArgs(false));
+            manager = new ExceptionManager(mockSender);
+            manager.ExceptionVerifyier = new StubVerifierByArgumentAndOutWords();
+
+            manager.HandleException(typeof(ArgumentNullException));
+            manager.HandleException(typeof(ArgumentException));
+
+            Assert.Equal((uint)2, manager.CounterOfWrongSending);
         }
     }
 }
